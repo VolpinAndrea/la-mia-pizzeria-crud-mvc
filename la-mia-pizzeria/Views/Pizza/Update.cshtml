@@ -2,7 +2,7 @@
 
 <h1 class="text-center mt-5">Modifica la pizza</h1>
 <div class="container">
-    <form asp-controller="Pizza" asp-action="Update">
+    <form asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.Pizza.Id" method="post">
 
         @Html.AntiForgeryToken()
         <input asp-for="Pizza.Id" type="hidden" class="form-control">

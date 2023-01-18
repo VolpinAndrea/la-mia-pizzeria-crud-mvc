@@ -25,8 +25,8 @@
                             <div class="card border-thicc-black rounded-3" style="width: 18rem;">
                                 <img src="@pizza.Immagine" class="card-img-top border-thicc-red m-3" alt="Immagine">
                                 <div class="card-body">
-                                    <h5 class="card-title">@pizza.Categoria.Nome</h5>
-                                    <p class="card-text">@pizza.Nome @pizza.Prezzo</p>
+                                    <h5 class="card-title">@pizza.Nome</h5>
+                                    <p class="card-text">@pizza.Prezzo €</p>
                                     <a href="@Url.Action("Details","Pizza",new{id=pizza.Id})" class="stretched-link"></a>
                                 </div>
                             </div>

@@ -61,26 +61,6 @@ namespace la_mia_pizzeria.Controllers
             return NotFound("Ia pizza con l'id cercato non esiste!");
 
         }
-        [HttpPost]
-        public IActionResult Delete(int id)
-        {
-            using (PizzeriaContext db = new PizzeriaContext())
-            {
-                Pizza pizzaDaEliminare = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
-
-                if (pizzaDaEliminare != null)
-                {
-                    db.Pizze.Remove(pizzaDaEliminare);
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    return NotFound("Ia pizza da eliminare non è stata trovata!");
-                }
-            }
-        }
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -104,7 +84,7 @@ namespace la_mia_pizzeria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ModificaPizza(PizzaCategoriaView formdata)
+        public IActionResult Update(PizzaCategoriaView formdata)
         {
             if (!ModelState.IsValid)
             {
@@ -122,6 +102,26 @@ namespace la_mia_pizzeria.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            using (PizzeriaContext db = new PizzeriaContext())
+            {
+                Pizza pizzaDaEliminare = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
+
+                if (pizzaDaEliminare != null)
+                {
+                    db.Pizze.Remove(pizzaDaEliminare);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return NotFound("Ia pizza da eliminare non è stata trovata!");
+                }
+            }
         }
     }
 
