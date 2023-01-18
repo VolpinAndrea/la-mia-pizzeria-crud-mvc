@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+.immagineTop {
+    background-image: url(https://thumbs.dreamstime.com/z/homemade-cheesy-pizza-sliced-classic-italian-ingredients-olive-oil-white-marble-background-copy-space-top-view-128740997.jpg);
+    background-position: center;
+}
