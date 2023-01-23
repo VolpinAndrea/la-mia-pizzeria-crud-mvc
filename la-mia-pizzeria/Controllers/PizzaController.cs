@@ -104,6 +104,7 @@ namespace la_mia_pizzeria.Controllers
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             using (PizzeriaContext db = new PizzeriaContext())
