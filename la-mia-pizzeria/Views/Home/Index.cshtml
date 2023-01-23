@@ -1,4 +1,55 @@
-﻿@model List<Categoria>
+﻿@section Scripts {
+
+    <script type="text/javascript">
+
+        loadList();
+
+        function loadList() {
+
+            axios.get('/api/pizzeApi').then((res) => {
+
+                console.log('risultato ok', res);
+
+                if (res.data.length == 0) {
+
+                    document.querySelector('.js_no_post').classList.remove('d-none');
+                    document.querySelector('.js_post_table').classList.add('d-none');
+
+                } else {
+
+                    document.querySelector('.js_post_table').classList.remove('d-none');
+                    document.querySelector('.js_no_post').classList.add('d-none');
+
+                    document.querySelector('.js_post_table').innerHTML = '';
+
+                    res.data.forEach(post => {
+
+                        console.log('pizze', post);
+
+                        document.querySelector('.js_post_table').innerHTML +=
+                            `
+                                                   <div class="col-5  d-flex align-items-stretch">
+                                    <div class="card border-thicc-black rounded-3" style="width: 18rem;">
+                                                <img src="${pizza.immagine}" class="card-img-top border-thicc-red m-3" alt="Immagine">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${pizza.nome}</h5>
+                                            <p class="card-text">${pizza.prezzo} €</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                     `;
+                    });
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+
+        }
+
+    </script>
+
+}
+@*@model List<Categoria>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -37,4 +88,4 @@
             }
         </div>
     </div>
-</div>
+</div>*@
