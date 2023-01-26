@@ -11,14 +11,38 @@ namespace la_mia_pizzeria.Controllers
     public class PizzaApiController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
-        {
-            using (PizzeriaContext db = new PizzeriaContext())
-            {
-                List<Pizza> pizze = db.Pizze.Include(pizza => pizza.Id).ToList<Pizza>();
 
-                return Ok(pizze);
+        public IActionResult Get(string? search)
+        {
+            using PizzeriaContext db = new PizzeriaContext();
+            List<Pizza> listaPizze = new List<Pizza>();
+            if (search == null || search == "")
+            {
+                listaPizze = db.Pizze.ToList();
+                return Ok(listaPizze);
+            }
+            else
+            {
+                search = search.ToLower();
+                listaPizze = db.Pizze.Where(pizzaScelta => pizzaScelta.Nome.ToLower().Contains(search)).ToList();
+                return Ok(listaPizze);
+            }
+        }
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            using (PizzeriaContext context = new PizzeriaContext())
+            {
+                Pizza pizza = context.Pizze.Where(pizza => pizza.Id == id).Include(pizza => pizza.Categoria).FirstOrDefault();
+
+                if (pizza == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(pizza);
             }
         }
     }
+}
 }

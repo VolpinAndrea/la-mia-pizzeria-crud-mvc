@@ -1,0 +1,40 @@
+﻿@model List<Categoria>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mb-3">
+    <div class="row d-flex justify-content-around">
+        <div class="col-12 ">
+            <a class="btn" href="@Url.Action("Create","Pizza")">Aggiungi una pizza</a>
+        </div>
+    </div>
+    <!--Creazione card-->
+    <div class="row">
+        <div class="col-12">
+            @foreach (var categoria in Model)
+            {
+                <div class="row border-thicc-green rounded-3 mb-3">
+                    <div class="col-12 ">
+                        <h3>@categoria.Nome<h3>
+                    </div>
+                    @foreach (var pizza in categoria.Pizze)
+                    {
+                        <div class="col-5  d-flex align-items-stretch">
+                            <div class="card border-thicc-black rounded-3" style="width: 18rem;">
+                                <img src="@pizza.Immagine" class="card-img-top border-thicc-red m-3" alt="Immagine">
+                                <div class="card-body">
+                                    <h5 class="card-title">@pizza.Nome</h5>
+                                    <p class="card-text">@pizza.Prezzo €</p>
+                                    <a href="@Url.Action("Details","Pizza",new{id=pizza.Id})" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

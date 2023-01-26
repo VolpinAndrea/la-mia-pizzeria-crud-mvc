@@ -13,5 +13,13 @@ namespace la_mia_pizzeria.Database
 
             optionsBuilder.UseSqlServer("Data Source=localhost;Database=DBpizzeria;Integrated Security=True;TrustServerCertificate=True");
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    IConfigurationRoot configuration = new ConfigurationBuilder()
+        //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        //        .AddJsonFile("appsettings.json")
+        //        .Build();
+        //    optionsBuilder.UseSqlServer(configuration.GetConnectionString("PizzeriaDbApi"));
+        //}
     }
 }
